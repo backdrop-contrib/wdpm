@@ -30,12 +30,10 @@ To use, call `wdpm($variable)` or `wdpm("string")`.
 Then, check admin/reports/dblog for the watchdog entry.  Provides an attractive, 
 clickable UI, even for complicated arrays and objects.
 
-Example (viewing an array of nodes in a watchdog entry):
-
-[<img src="screenshots/screen1.jpg" width="100" height="100"/>](screenshots/screen1.jpg)
-[<img src="screenshots/screen2.jpg" width="100" height="100"/>](screenshots/screen2.jpg)
-[<img src="screenshots/screen3.jpg" width="100" height="100"/>](screenshots/screen3.jpg)
-
+**Example (viewing an array of nodes in a watchdog entry):**
+(1) [<img src="screenshots/screen1.jpg" width="250" height="250"/>](screenshots/screen1.jpg)
+(2) [<img src="screenshots/screen2.jpg" width="250" height="250"/>](screenshots/screen2.jpg)
+(3) [<img src="screenshots/screen3.jpg" width="250" height="250"/>](screenshots/screen3.jpg)
 
 
 
