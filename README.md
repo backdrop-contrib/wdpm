@@ -32,9 +32,9 @@ clickable UI, even for complicated arrays and objects.
 
 **Example (viewing an array of nodes in a watchdog entry):**
 
-(1) [<img src="screenshots/screen1.jpg" width="250" height="250"/>](screenshots/screen1.jpg)
-(2) [<img src="screenshots/screen2.jpg" width="250" height="250"/>](screenshots/screen2.jpg)
-(3) [<img src="screenshots/screen3.jpg" width="250" height="250"/>](screenshots/screen3.jpg)
+(1) [<img src="screenshots/screen1.jpg" width="225" height="225"/>](screenshots/screen1.jpg)
+(2) [<img src="screenshots/screen2.jpg" width="225" height="225"/>](screenshots/screen2.jpg)
+(3) [<img src="screenshots/screen3.jpg" width="225" height="225"/>](screenshots/screen3.jpg)
 
 
 
