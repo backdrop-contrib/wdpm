@@ -1,0 +1,39 @@
+.wdpm-html-print-r-wrapper {
+  font-size: 0.9em;
+  font-family: Arial, Verdana, sans serif;                
+}
+
+.wdpm-html-print-r-multi-row {
+  background-color: lightcyan;
+  border: 1px solid #bbb;
+  padding: 5px;                  
+}
+
+.wdpm-html-print-r-multi-row .wdpm-html-print-r-selector {
+  cursor: pointer;  
+}
+
+.wdpm-html-print-r-multi-row > .wdpm-html-print-r-var-value {
+  display: none;
+  padding-left: 30px;
+  
+}
+
+.wdpm-html-print-r-single-row {
+  border-top: 1px solid #bbb;
+}
+
+.wdpm-html-print-r-var-name {
+  color: #404000;
+  font-weight: bold;
+}
+
+.wdpm-html-print-r-var-type {
+  font-style: italic;
+}
+
+.wdpm-html-print-r-single-row .wdpm-html-print-r-var-value {
+  display: none;
+  font-weight: bold;
+}
+              

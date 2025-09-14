@@ -1,0 +1,4 @@
+name = WDPM
+description = Watchdog dpm(). Like dpm(), but for a watchdog entry.
+backdrop = 1.x
+type = module

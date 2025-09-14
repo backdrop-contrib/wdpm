@@ -1,0 +1,141 @@
+<?php
+
+
+/**
+ * hook_init
+ */
+function wdpm_init() {
+  
+  if (arg(0) == 'admin' && arg(1) == 'reports' && arg(2) == 'event') {  
+    backdrop_add_css(backdrop_get_path('module', 'wdpm') . '/css/wdpm.css');
+    backdrop_add_js(backdrop_get_path('module', 'wdpm') . '/js/wdpm.js');
+  }
+  
+}
+
+
+/**
+ *  This works similar to devel's dpm() function, except it is written to watchdog('wdpm', $var) instead.  In the watchdog entry
+ *  we still have a clickable interface for debugging complex variables.
+ */
+function wdpm($var, $max_levels = 20) {
+  
+  // Complex variable?  Change it to print_r.
+  $str = $var;
+  if (is_array($str) || is_object($str)) {
+    $str = "<div class='wdpm-html-print-r-wrapper'>" . wdpm_html_print_r($str, "", 0, $max_levels) . "</div>";
+  }    
+
+  $arr = debug_backtrace();
+
+  $file = $arr[0]["file"];
+  if (strlen($file) > 70) {
+    $file = "..." . substr($file, strlen($file) - 70);
+  }
+  $str .= "&nbsp;<div class='wdpm-message-backtrace'>- line {$arr[0]["line"]}: $file</div>";
+
+  
+  $rtn = "";
+  
+  
+  $rtn .= "<div class='wspm-message'>$str</div>";
+  
+  watchdog('wdpm', $rtn, array(), WATCHDOG_DEBUG);
+  
+    
+}
+
+
+/**
+ * Similar to print_r, this will return an HTML-friendly
+ * click-to-open system similar in design to Krumo.
+ * 
+ * You should not call this function directly, but instead use wdpm()
+ * 
+ */
+function wdpm_html_print_r($var, $name = "", $cnt = 0, $max_levels = 20) {  
+  $rtn = "";
+
+  if ($cnt == 0) {
+    $rtn .= "<div>wdpm output:</div>";
+  }
+  
+  if ($cnt > $max_levels) {
+    // Max levels deep.  Deeper, and PHP might run
+    // out of memory or complain.
+    $rtn .= "<div class='wdpm-html-print-r-too-deep'>
+              " . t("Depth too great. To view deeper,
+                     rephrase your wdpm() call, extending past this depth ($max_levels).") . "
+             </div>";
+    return $rtn;
+  }
+  
+  $type = gettype($var);
+  $rnd = md5(mt_rand(0, 999999) . microtime() . $type . $name);
+  
+  if ($type == "boolean") {
+    $var = ($var == TRUE) ? "TRUE" : "FALSE";
+  }  
+  
+  $count = "";
+  if ($type == "string") {
+    $count = " - " . strlen($var) . " " . "chars";
+  }
+  
+  if ($type == "array" || $type == "object") {
+      
+    
+    if ($type == "array") {
+      $count = " - " .  count($var) . " " . "elements";
+    }
+    
+    if ($type == "object") {
+      $count = " - " . get_class($var);
+    }
+    
+    $rtn .= "<div class='wdpm-html-print-r-multi-row'>
+               <div class='wdpm-html-print-r-selector' data-openup='$rnd' >
+                  <span class='wdpm-html-print-r-var-name'>$name</span>
+                  <span class='wdpm-html-print-r-var-type'>($type$count)</span>
+                  </div>
+               <div class='wdpm-html-print-r-var-value' id='wdpm-html-print-r-var-value-$rnd'>";
+    foreach ($var as $key => $value) {
+      $rtn .= wdpm_html_print_r($value, $key, ($cnt + 1), $max_levels);
+    }
+    
+    $rtn .= "</div>
+             </div>";
+  }
+  else if ($type == "string" && strlen($var) > 50) {
+    // If the variable is fairly long, we want to also make it a click-to-show type field.
+    $rtn .= "<div class='wdpm-html-print-r-multi-row'>
+               <div class='wdpm-html-print-r-selector' data-openup='$rnd' >
+                    <span class='wdpm-html-print-r-var-name'>$name</span>
+                    <span class='wdpm-html-print-r-var-type'>($type$count)</span>
+                    <span class='wdpm-html-print-r-var-value-abbr'>" . htmlentities(substr($var, 0, 50)) . "...</span>
+                  </div>
+               <div class='wdpm-html-print-r-var-value' id='wdpm-html-print-r-var-value-$rnd'>
+               ";
+    $rtn .= htmlentities($var);
+    $rtn .= "</div></div>";    
+  }
+  else { 
+    
+    $html_val = $var;
+    if ($type != "resource") {
+      $html_val = htmlentities((string) $var);
+    }
+    
+    $rtn .= "<div class='wdpm-html-print-r-single-row'>                
+                <span class='wdpm-html-print-r-var-name'>$name</span>
+                <span class='wdpm-html-print-r-var-type'>($type$count)</span>
+                <span class='wdpm-html-print-r-var-value-visible'>$html_val</span>
+           </div>";
+  }  
+  
+  return $rtn;
+}
+
+
+
+
