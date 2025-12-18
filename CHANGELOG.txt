@@ -1,5 +1,10 @@
 WDPM
 ==========
 
+2025-12-17
+  Fixed a bug where sometimes a double-click is registered, causing the wdpm output to open and then immediately
+  close. This may have been due to differences in themes? Not sure.
+
+
 2025-09-13
   Initial commit to backdrop-contrib.
