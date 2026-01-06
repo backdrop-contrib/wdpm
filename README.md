@@ -1,5 +1,5 @@
 WDPM
-==========
+========== 
 
 If you've used Devel's dpm() function, this module provides similar functionality, 
 but for watchdog entries.
