@@ -39,14 +39,6 @@ clickable UI, even for complicated arrays and objects.
 
 
 
-
-
-Current Maintainers
--------------------
-
-- [Richard Peacock](https://github.com/swampopus) - Original author
-- Seeking additional maintainers.
-
 Recommended
 -----------
 
@@ -59,6 +51,20 @@ This module works great with:
       to the watchdog logs if you need to debug. It's actually the reason this module was made,
       to make that process simpler.
 
+
+
+Current Maintainers
+-------------------
+
+- [Richard Peacock](https://github.com/swampopus)
+- Seeking additional maintainers.
+
+
+Credits
+-------
+
+- Created for Backdrop CMS by [Richard Peacock](https://github.com/swampopus)
+- Development sponsored by [FlightPath Academics](https://flightpathacademics.com)
 
 
 License
